@@ -1,0 +1,48 @@
+from nltk.corpus import wordnet
+
+syns = wordnet.synsets("program")
+
+######## Very useful in cheating by switching words or atleast find the one who would be cheating by copying the paper and changing the words.
+
+#synset
+print(syns)
+
+#just the word
+print(syns[0].lemmas()[0].name())
+
+#definition
+print(syns[0].definition())
+
+#examples
+print(syns[0].examples())
+
+
+synonyms = []
+antonyms = []
+
+for syn in wordnet.synsets("good"):
+    for l in syn.lemmas():
+        # print("l:", l)
+        synonyms.append(l.name())
+        if l.antonyms():
+            antonyms.append(l.antonyms()[0].name())
+
+print(set(synonyms))
+print(set(antonyms))
+
+## Semantic similiarity
+
+w1 = wordnet.synset("ship.n.01")
+w2 = wordnet.synset("boat.n.01")
+
+print(w1.wup_similarity(w2)) #wup to find the similarity
+
+w1 = wordnet.synset("ship.n.01")
+w2 = wordnet.synset("ferry.n.01")
+
+print(w1.wup_similarity(w2))
+
+w1 = wordnet.synset("ship.n.01")
+w2 = wordnet.synset("plant.n.01")
+
+print(w1.wup_similarity(w2))
